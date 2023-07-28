@@ -11,11 +11,9 @@ module Network.GRPC.Spec.Request (
   ) where
 
 import Data.ByteString.Char8 qualified as BS.Strict.C8
-import Data.List (intersperse)
 import Data.List.NonEmpty (NonEmpty)
 import Data.Maybe (catMaybes)
 import Data.SOP
-import Data.Version
 import Network.HTTP.Types qualified as HTTP
 
 import Network.GRPC.Spec
@@ -25,8 +23,6 @@ import Network.GRPC.Spec.CustomMetadata
 import Network.GRPC.Spec.PercentEncoding qualified as PercentEncoding
 import Network.GRPC.Spec.RPC
 import Network.GRPC.Util.Partial
-
-import PackageInfo_grapesy qualified as PackageInfo
 
 {-------------------------------------------------------------------------------
   Construction
@@ -140,11 +136,9 @@ callDefinition proxy = \hdrs -> catMaybes [
         , mconcat [
               "grpc-"
             , "haskell"
-            , "-" <> BS.Strict.C8.pack (PackageInfo.name)
+            , "-" <> "grapesy"
             , "/"
-            , mconcat . intersperse "." $
-                map (BS.Strict.C8.pack . show) $
-                  versionBranch PackageInfo.version
+            , "0.1.0"
             ]
         )
 
