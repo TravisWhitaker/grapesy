@@ -350,7 +350,7 @@ executable test-stress
 
 Flag build-demo
   description: Build the demo
-  default: False
+  default: True
   manual: True
 
 Flag build-stress-test
